@@ -76,16 +76,16 @@ mkdir manifests
 
 helm template consul hashicorp/consul \
   --namespace vault \
-  --version 0.39.0 \
+  --version 1.3.1 \
   -f consul-values.yaml \
-  > ./manifests/consul.yaml
+  > ./manifests1/consul.yaml
 ```
 
 Deploy the consul services:
 
 ```
 kubectl create ns vault
-kubectl -n vault apply -f ./manifests/consul.yaml
+kubectl -n vault apply -f ./manifests1/consul.yaml
 kubectl -n vault get pods
 ```
 
@@ -125,9 +125,9 @@ Let's grab the manifests:
 ```
 helm template vault hashicorp/vault \
   --namespace vault \
-  --version 0.19.0 \
+  --version 0.27.0 \
   -f vault-values.yaml \
-  > ./manifests/vault.yaml
+  > ./manifests1/vault.yaml
 ```
 
 ## Deployment
