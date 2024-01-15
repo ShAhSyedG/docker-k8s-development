@@ -9,6 +9,7 @@ injector:
   image:
     repository: "hashicorp/vault-k8s"
     tag: "0.14.1"
+    imagePullPolicy: Always
 
   resources:
       requests:
@@ -21,7 +22,7 @@ injector:
 server:
   image:
     repository: "hashicorp/vault"
-    tag: "1.9.2"
+    tag: "1.15.2"
 
   # These Resource Limits are in line with node requirements in the
   # Vault Reference Architecture for a Small Cluster
@@ -30,8 +31,8 @@ server:
     #  memory: 50Mi
     #  cpu: 500m
     limits:
-      memory: 1Gi
-      cpu: 1000m
+      memory: 512Mi
+      cpu: 512m
 
   # For HA configuration and because we need to manually init the vault,
   # we need to define custom readiness/liveness Probe settings
@@ -62,7 +63,7 @@ server:
   # Run Vault in "HA" mode.
   ha:
     enabled: true
-    replicas: 3
+    replicas: 2
     config: |
       ui = true
        
